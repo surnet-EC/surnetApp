@@ -6,6 +6,8 @@ interface Props {
 const { title } = Astro.props;
 import "../styles/global.css";
 import Navbar from '../components/navbar.astro';
+import { ViewTransitions } from "astro:transitions";
+
 ---
 
 <!doctype html>
@@ -17,10 +19,13 @@ import Navbar from '../components/navbar.astro';
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<ViewTransitions />
 	</head>
-	<body class="dark:bg-gray-950">
+	<body class="">
 		<Navbar/>
-		<slot />
+		<main class="lg:max-w-screen-xl mx-auto mt-14">
+			<slot />
+		</main>
 	</body>
 </html>
 
