@@ -1,0 +1,55 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Surnet | Convenios de pago">
+  <div class="lg:grid grid-cols-2 mt-5">
+    <section class="lg:border lg:rounded-lg flex flex-col lg:p-5 lg:m-5">
+        <label for="">Fecha de facturación</label>
+        <select name="" id="" class="py-1">
+            <option value="fecha1">Fecha 1</option>
+            <option value="fecha15">Fecha 15</option>
+        </select>
+        <label for="" class="mt-2">OT cliente</label>
+        <input type="number" class="py-1">
+        <label for="" class="mt-2">Nombre del cliente</label>
+        <input type="text" class="py-1">
+        <label for="" class="mt-2">Valor del plan</label>
+        <select name="" id="" class="py-1">
+            <option value="20">$20</option>
+            <option value="24">$24</option>
+            <option value="25">$25</option>
+            <option value="29">$29</option>
+            <option value="30">$30</option>
+            <option value="33">$33</option>
+            <option value="35">$35</option>
+        </select>
+        <label for="" class="mt-2">Mes pendiente</label>
+        <input type="date" class="py-1">
+        <label for="diasConsumidos" class="mt-2">Numero de dias consumidos</label>
+        <input type="number" class="py-1">
+        <label for="" class="mt-2">Mes actual</label>
+        <input type="date">
+        <label for="diasPorConsumir" class="mt-2">Numero de dias por consumir</label>
+        <input type="number" class="py-1">
+    </section>
+    <section class="lg:border lg:rounded-lg mt-5 lg:p-5 lg:m-5">
+      <div>
+       REACTIVACIÓN FECHA DE FACTURACIÓN 15 DE CADA MES:
+        Estimado cliente: 003051 VILLARREAL HUERA EDGAR ROVIRO al momento sus saldos pendientes son sin descuento:
+        Pago pendiente de NOVIEMBRE 2023 : $24.00
+        Pago pendiente de la factura de éste período de SEPTIEMBRE: $24.00
+        Dando UN TOTAL de $ 48.000 dólares.
+        
+        PROMOCION DE CONTADO SOLO POR HOY PARA REACTIVAR(proporcionales)
+        Pago pendiente con descuento mes de NOVIEMBRE 2023_: $10.00
+        Pago pendiente de factura de éste mes de SEPTIEMBRE para reactivar: $10.00
+        Dando UN TOTAL de $ 20.00 dólares.
+        
+        
+        Si no cancela el día de hoy el valor con descuento, quedarán pendiente el saldo indicado sin descuento.
+
+      </div>
+    </section>
+  </div>
+</Layout>
