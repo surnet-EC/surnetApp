@@ -119,27 +119,24 @@ import Layout from "../layouts/Layout.astro";
 
     <section class="lg:border lg:rounded-lg mt-5 lg:p-5 lg:m-5">
       <textarea class="mensajeConvenio w-full h-full">
-        REACTIVACIÓN FECHA DE FACTURACIÓN --- DE CADA MES:
-        Estimado cliente: --OT-- ------nombres------ al momento sus saldos pendientes sin descuento:
-        Pago pendiente de --fecha pendiente-- : --valor pendiente ---
-        Pago pendiente de la factura de éste período de SEPTIEMBRE: $24.00
-        Dando UN TOTAL de $ 48.000 dólares.
-        
-        PROMOCION DE CONTADO SOLO POR HOY PARA REACTIVAR(proporcionales)
-        Pago pendiente con descuento mes de NOVIEMBRE 2023_: $10.00
-        Pago pendiente de factura de éste mes de SEPTIEMBRE para reactivar: $10.00
-        Dando UN TOTAL de $$$$$$
-        
-        
-        Si no cancela el día de hoy el valor con descuento, quedarán pendiente el saldo indicado sin descuento.
+        REACTIVACIÓN FECHA DE FACTURACIÓN --- DE CADA MES: Estimado cliente:
+        --OT-- ------nombres------ al momento sus saldos pendientes sin
+        descuento: Pago pendiente de --fecha pago pendiente-- : --valor
+        pendiente --- Pago pendiente de la factura de éste período ---fecha
+        factura actual --- : ---valor actual con descuento--- Dando UN TOTAL de
+        --- valores sin descuento --- PROMOCION DE CONTADO SOLO POR HOY ---fecha
+        actual-- PARA REACTIVAR(proporcionales) Pago pendiente con descuento
+        --fecha pago pendiente-- : ---valor pendiente con descuento--- Pago
+        pendiente de factura de éste periodo ---fecha factural actual---:
+        --valor actual con descuento--- Dando UN TOTAL de ---valores con
+        decuentos--- Si no cancela el día de hoy el valor con descuento,
+        quedarán pendiente el saldo indicado sin descuento.
       </textarea>
     </section>
   </div>
 </Layout>
 
 <script>
-
-
   document
     .getElementById("miFormulario")!
     .addEventListener("submit", function (event) {
@@ -163,36 +160,42 @@ import Layout from "../layouts/Layout.astro";
         document.querySelector<HTMLTextAreaElement>(".mensajeConvenio");
 
       //grabando los valores en variables
-      const fechaFacturacionValue = fechaFacturacion?.value;
-      const otClienteValue = otCliente?.value;
-      const nombreClienteValue = nombreCliente?.value;
+      const fechaFacturacionSelect = fechaFacturacion?.value;
+      const otClienteInput = otCliente?.value;
+      const nombreClienteInput = nombreCliente?.value;
       const valorPlanValue = valorPlan?.value;
       const mesPendienteValue = mesPendiente?.value;
       const diasConsumidosValue = diasConsumidos?.value;
-      const mesActualValue = mesActual?.value;
+      const mesActualInput = mesActual?.value;
       const diasPorConsumirValue = diasPorConsumir?.value;
       let mensajeConvenioValue = mensajeConvenio?.value;
+      let valorTotalSinDescuentos 
+
+      if (valorPlanValue) {
+        // Verifica que no sea undefined ni null
+         valorTotalSinDescuentos =
+          parseFloat(valorPlanValue.replace("$", "")) * 2;
+      } else {
+        console.log("El valor del plan no está definido.");
+      }
+
+      if (mensajeConvenio) {
+        mensajeConvenio.value = `REACTIVACIÓN FECHA DE FACTURACIÓN ${fechaFacturacionSelect} DE CADA MES:
+Estimado cliente: ${otClienteInput} ${nombreClienteInput} al momento sus saldos pendientes sin descuento:
+Pago pendiente de ${mesPendienteValue} : ${valorPlanValue} dolares
+Pago pendiente de la factura de éste período ${mesActualInput} : ${valorPlanValue} dolares
+Dando UN TOTAL de $${valorTotalSinDescuentos} dolares
+
+PROMOCION DE CONTADO SOLO POR HOY ${mesActualInput} PARA REACTIVAR(proporcionales)
+Pago pendiente con descuento de ${mesPendienteValue} : 
+Pago pendiente de la factura de éste período ${mesActualInput} para reactivar: $10.00
+Dando UN TOTAL de $ 20.00 dólares.
 
 
-
-      if (mensajeConvenio && fechaFacturacion?.value) {
-        mensajeConvenio.value =
-        `REACTIVACIÓN FECHA DE FACTURACIÓN ${fechaFacturacion?.value} DE CADA MES:
-        Estimado cliente: ${otClienteValue} ${nombreClienteValue} al momento sus saldos pendientes son sin descuento:
-        Pago pendiente de ${mesPendienteValue} : ${valorPlanValue}
-        Pago pendiente de la factura de éste período ${mesActualValue}:${valorPlanValue}
-        Dando UN TOTAL de $$$$
-        
-        PROMOCION DE CONTADO SOLO POR HOY PARA REACTIVAR(proporcionales)
-        Pago pendiente con descuento mes de NOVIEMBRE 2023_: $10.00
-        Pago pendiente de factura de éste mes de SEPTIEMBRE para reactivar: $10.00
-        Dando UN TOTAL de $ 20.00 dólares.
-        
-        
-        Si no cancela el día de hoy el valor con descuento, quedarán pendiente el saldo indicado sin descuento.`; // Usar .value para un textarea
+Si no cancela el día de hoy el valor con descuento, quedarán pendiente el saldo indicado sin descuento.
+`;
       }
 
       console.log(mensajeConvenio);
-      
     });
 </script>
