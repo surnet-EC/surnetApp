@@ -4,42 +4,184 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Surnet | Convenios de pago">
   <div class="lg:grid grid-cols-2 mt-5">
-    <section class="lg:border lg:rounded-lg flex flex-col lg:p-5 lg:m-5">
-        <label for="">Fecha de facturación</label>
-        <select name="" id="" class="py-1">
-            <option value="fecha1">Fecha 1</option>
-            <option value="fecha15">Fecha 15</option>
-        </select>
-        <label for="" class="mt-2">OT cliente</label>
-        <input type="number" class="py-1">
-        <label for="" class="mt-2">Nombre del cliente</label>
-        <input type="text" class="py-1">
-        <label for="" class="mt-2">Valor del plan</label>
-        <select name="" id="" class="py-1">
-            <option value="20">$20</option>
-            <option value="24">$24</option>
-            <option value="25">$25</option>
-            <option value="29">$29</option>
-            <option value="30">$30</option>
-            <option value="33">$33</option>
-            <option value="35">$35</option>
-        </select>
-        <label for="" class="mt-2">Mes pendiente</label>
-        <input type="date" class="py-1">
-        <label for="diasConsumidos" class="mt-2">Numero de dias consumidos</label>
-        <input type="number" class="py-1">
-        <label for="" class="mt-2">Mes actual</label>
-        <input type="date">
-        <label for="diasPorConsumir" class="mt-2">Numero de dias por consumir</label>
-        <input type="number" class="py-1">
-    </section>
+    <form
+      id="miFormulario"
+      class="lg:border lg:rounded-lg lg:gap-6 lg:m-5 grid grid-cols-1 lg:grid-cols-[1fr_2fr] lg:p-5"
+    >
+      <label
+        for="fechaFacturacion"
+        class="mt-2 lg:text-end lg:flex lg:items-center"
+        >Fecha de facturación</label
+      >
+      <select
+        id="fechaFacturacion"
+        name="fechaFacturacion"
+        class="py-1 w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
+      >
+        <option value="" disabled selected>Selecciona una fecha</option>
+        <option value="1">Fecha 1</option>
+        <option value="15">Fecha 15</option>
+      </select>
+
+      <label for="otCliente" class="mt-2 lg:text-end lg:flex lg:items-center"
+        >OT cliente</label
+      >
+      <input
+        type="number"
+        id="otCliente"
+        name="otCliente"
+        class="py-1 w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
+        placeholder="Número OT"
+      />
+
+      <label
+        for="nombreCliente"
+        class="mt-2 lg:text-end lg:flex lg:items-center"
+        >Nombre del cliente</label
+      >
+      <input
+        type="text"
+        id="nombreCliente"
+        name="nombreCliente"
+        class="py-1 w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
+        placeholder="Nombre completo"
+      />
+
+      <label for="valorPlan" class="mt-2 lg:text-end lg:flex lg:items-center"
+        >Valor del plan</label
+      >
+      <select
+        id="valorPlan"
+        name="valorPlan"
+        class="py-1 w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
+      >
+        <option value="" disabled selected>Selecciona un valor</option>
+        <option value="$20">$20</option>
+        <option value="$24">$24</option>
+        <option value="$25">$25</option>
+        <option value="$29">$29</option>
+        <option value="$30">$30</option>
+        <option value="$33">$33</option>
+        <option value="$35">$35</option>
+      </select>
+
+      <label for="mesPendiente" class="mt-2 lg:text-end lg:flex lg:items-center"
+        >Mes pendiente</label
+      >
+      <input
+        type="date"
+        id="mesPendiente"
+        name="mesPendiente"
+        class="py-1 w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
+      />
+
+      <label
+        for="diasConsumidos"
+        class="mt-2 lg:text-end lg:flex lg:items-center"
+        >Total días consumidos</label
+      >
+      <input
+        type="number"
+        id="diasConsumidos"
+        name="diasConsumidos"
+        class="py-1 w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
+        placeholder="Días consumidos"
+      />
+
+      <label for="mesActual" class="mt-2 lg:text-end lg:flex lg:items-center"
+        >Mes actual</label
+      >
+      <input
+        type="date"
+        id="mesActual"
+        name="mesActual"
+        class="py-1 w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
+      />
+
+      <label
+        for="diasPorConsumir"
+        class="mt-2 lg:text-end lg:flex lg:items-center"
+        >Días por consumir</label
+      >
+      <input
+        type="number"
+        id="diasPorConsumir"
+        name="diasPorConsumir"
+        class="py-1 w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
+        placeholder="Días restantes"
+      />
+
+      <button
+        type="submit"
+        class="mt-5 bg-blue-500 text-white py-2 px-4 rounded">Evaluar</button
+      >
+    </form>
+
     <section class="lg:border lg:rounded-lg mt-5 lg:p-5 lg:m-5">
-      <div>
-       REACTIVACIÓN FECHA DE FACTURACIÓN 15 DE CADA MES:
-        Estimado cliente: 003051 VILLARREAL HUERA EDGAR ROVIRO al momento sus saldos pendientes son sin descuento:
-        Pago pendiente de NOVIEMBRE 2023 : $24.00
+      <textarea class="mensajeConvenio w-full h-full">
+        REACTIVACIÓN FECHA DE FACTURACIÓN --- DE CADA MES:
+        Estimado cliente: --OT-- ------nombres------ al momento sus saldos pendientes sin descuento:
+        Pago pendiente de --fecha pendiente-- : --valor pendiente ---
         Pago pendiente de la factura de éste período de SEPTIEMBRE: $24.00
         Dando UN TOTAL de $ 48.000 dólares.
+        
+        PROMOCION DE CONTADO SOLO POR HOY PARA REACTIVAR(proporcionales)
+        Pago pendiente con descuento mes de NOVIEMBRE 2023_: $10.00
+        Pago pendiente de factura de éste mes de SEPTIEMBRE para reactivar: $10.00
+        Dando UN TOTAL de $$$$$$
+        
+        
+        Si no cancela el día de hoy el valor con descuento, quedarán pendiente el saldo indicado sin descuento.
+      </textarea>
+    </section>
+  </div>
+</Layout>
+
+<script>
+
+
+  document
+    .getElementById("miFormulario")!
+    .addEventListener("submit", function (event) {
+      event.preventDefault(); // Evita el envío del formulario por defecto
+
+      // Obtener los valores de los inputs y selects con los tipos correctos
+      const fechaFacturacion =
+        document.querySelector<HTMLSelectElement>("#fechaFacturacion");
+      const otCliente = document.querySelector<HTMLInputElement>("#otCliente");
+      const nombreCliente =
+        document.querySelector<HTMLInputElement>("#nombreCliente");
+      const valorPlan = document.querySelector<HTMLSelectElement>("#valorPlan");
+      const mesPendiente =
+        document.querySelector<HTMLInputElement>("#mesPendiente");
+      const diasConsumidos =
+        document.querySelector<HTMLInputElement>("#diasConsumidos");
+      const mesActual = document.querySelector<HTMLInputElement>("#mesActual");
+      const diasPorConsumir =
+        document.querySelector<HTMLInputElement>("#diasPorConsumir");
+      const mensajeConvenio =
+        document.querySelector<HTMLTextAreaElement>(".mensajeConvenio");
+
+      //grabando los valores en variables
+      const fechaFacturacionValue = fechaFacturacion?.value;
+      const otClienteValue = otCliente?.value;
+      const nombreClienteValue = nombreCliente?.value;
+      const valorPlanValue = valorPlan?.value;
+      const mesPendienteValue = mesPendiente?.value;
+      const diasConsumidosValue = diasConsumidos?.value;
+      const mesActualValue = mesActual?.value;
+      const diasPorConsumirValue = diasPorConsumir?.value;
+      let mensajeConvenioValue = mensajeConvenio?.value;
+
+
+
+      if (mensajeConvenio && fechaFacturacion?.value) {
+        mensajeConvenio.value =
+        `REACTIVACIÓN FECHA DE FACTURACIÓN ${fechaFacturacion?.value} DE CADA MES:
+        Estimado cliente: ${otClienteValue} ${nombreClienteValue} al momento sus saldos pendientes son sin descuento:
+        Pago pendiente de ${mesPendienteValue} : ${valorPlanValue}
+        Pago pendiente de la factura de éste período ${mesActualValue}:${valorPlanValue}
+        Dando UN TOTAL de $$$$
         
         PROMOCION DE CONTADO SOLO POR HOY PARA REACTIVAR(proporcionales)
         Pago pendiente con descuento mes de NOVIEMBRE 2023_: $10.00
@@ -47,9 +189,10 @@ import Layout from "../layouts/Layout.astro";
         Dando UN TOTAL de $ 20.00 dólares.
         
         
-        Si no cancela el día de hoy el valor con descuento, quedarán pendiente el saldo indicado sin descuento.
+        Si no cancela el día de hoy el valor con descuento, quedarán pendiente el saldo indicado sin descuento.`; // Usar .value para un textarea
+      }
 
-      </div>
-    </section>
-  </div>
-</Layout>
+      console.log(mensajeConvenio);
+      
+    });
+</script>
