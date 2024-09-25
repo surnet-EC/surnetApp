@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Surnet | Convenios de pago">
-  <div class="lg:grid grid-cols-2 mt-5">
+  <div class="lg:grid grid-cols-2">
     <form
       id="miFormulario"
       class="lg:border lg:rounded-lg lg:gap-6 lg:m-5 grid grid-cols-1 lg:grid-cols-[1fr_2fr] lg:p-5"
@@ -117,21 +117,27 @@ import Layout from "../layouts/Layout.astro";
       >
     </form>
 
-    <section class="lg:border lg:rounded-lg mt-5 lg:p-5 lg:m-5">
-      <textarea class="mensajeConvenio w-full h-full">
-        REACTIVACIÓN FECHA DE FACTURACIÓN --- DE CADA MES: Estimado cliente:
-        --OT-- ------nombres------ al momento sus saldos pendientes sin
-        descuento: Pago pendiente de --fecha pago pendiente-- : --valor
-        pendiente --- Pago pendiente de la factura de éste período ---fecha
-        factura actual --- : ---valor actual con descuento--- Dando UN TOTAL de
-        --- valores sin descuento --- PROMOCION DE CONTADO SOLO POR HOY ---fecha
-        actual-- PARA REACTIVAR(proporcionales) Pago pendiente con descuento
-        --fecha pago pendiente-- : ---valor pendiente con descuento--- Pago
-        pendiente de factura de éste periodo ---fecha factural actual---:
-        --valor actual con descuento--- Dando UN TOTAL de ---valores con
-        decuentos--- Si no cancela el día de hoy el valor con descuento,
-        quedarán pendiente el saldo indicado sin descuento.
-      </textarea>
+    <section class="lg:border lg:rounded-lg mt-5  lg:m-5">
+      <div class="mensajeConvenio w-full h-full lg:p-5">
+REACTIVACIÓN FECHA DE FACTURACIÓN <span class="text-cyan-600">---</span> DE CADA MES: <br>
+Estimado cliente: <span class="text-cyan-600">---OT---</span> <span class="text-cyan-600">---nombres---</span>  al momento sus saldos pendientes sin
+descuento son: <br>
+Pago pendiente de <span class="text-cyan-600">--fecha pago pendiente---</span>  : <span class="text-cyan-600"> --valor---pendiente---</span> <br> 
+Pago pendiente de la factura de éste período <span class="text-cyan-600">---fecha--factura--actual---</span>  : <span class="text-cyan-600">---valor actual sin descuento---</span> <br>
+Dando UN TOTAL de <span class="text-cyan-600">--- valores sin descuento ---</span> <br>
+PROMOCION DE CONTADO SOLO POR HOY <span class="text-cyan-600">---fecha---actual---</span> 
+PARA REACTIVAR(proporcionales) <br> 
+Pago pendiente con descuento <span class="text-cyan-600">--fecha---pago---pendiente-- </span> : <span class="text-cyan-600">---valor--pendiente--con--descuento---</span> <br>
+ Pago pendiente de factura de éste periodo <span class="text-cyan-600">---fecha--factural--actual---</span>: <span class="text-cyan-600">--valor actual con descuento---</span> <br>
+ Dando UN TOTAL de <span class="text-cyan-600">---valores-con-decuentos---</span> <br>
+ <br>
+ Si no cancela el día de hoy el valor con descuento,
+quedarán pendiente el saldo indicado sin descuento.
+        
+
+
+</div>
+
     </section>
   </div>
 </Layout>
@@ -157,7 +163,7 @@ import Layout from "../layouts/Layout.astro";
       const diasPorConsumir =
         document.querySelector<HTMLInputElement>("#diasPorConsumir");
       const mensajeConvenio =
-        document.querySelector<HTMLTextAreaElement>(".mensajeConvenio");
+        document.querySelector<HTMLDivElement>(".mensajeConvenio");
 
       //grabando los valores en variables
       const fechaFacturacionSelect = fechaFacturacion?.value;
@@ -165,31 +171,56 @@ import Layout from "../layouts/Layout.astro";
       const nombreClienteInput = nombreCliente?.value;
       const valorPlanValue = valorPlan?.value;
       const mesPendienteValue = mesPendiente?.value;
-      const diasConsumidosValue = diasConsumidos?.value;
+      const diasConsumidosInput = diasConsumidos?.value;
       const mesActualInput = mesActual?.value;
-      const diasPorConsumirValue = diasPorConsumir?.value;
-      let mensajeConvenioValue = mensajeConvenio?.value;
-      let valorTotalSinDescuentos 
+      const diasPorConsumirInput = diasPorConsumir?.value;
+      let mensajeConvenioValue = mensajeConvenio?.innerText;
+
+      let valorTotalSinDescuentos;
+      let valorPorDia;
+      let valorTotalPorDiasConsumidos;
+      let valorTotalPorDiasAConsumir;
+      let valorTotalConDescuento
 
       if (valorPlanValue) {
         // Verifica que no sea undefined ni null
-         valorTotalSinDescuentos =
+        valorTotalSinDescuentos =
           parseFloat(valorPlanValue.replace("$", "")) * 2;
+
+        valorPorDia = parseFloat(valorPlanValue.replace("$", "")) / 30;
+
+        valorTotalPorDiasConsumidos =
+          valorPorDia * Number(diasConsumidosInput) < 10
+            ? 10
+            : Math.ceil(valorPorDia * Number(diasConsumidosInput));
+
+
+            const diasAConsumir = Number(diasPorConsumirInput) >= 24 ? 30 : Number(diasPorConsumirInput);
+valorTotalPorDiasAConsumir = valorPorDia * diasAConsumir < 10 
+    ? 10 
+    : Math.ceil(valorPorDia * diasAConsumir);
+
+
+            valorTotalConDescuento = valorTotalPorDiasConsumidos + valorTotalPorDiasAConsumir
+
+
       } else {
         console.log("El valor del plan no está definido.");
       }
 
+      console.log(valorPorDia, valorTotalPorDiasConsumidos,valorTotalPorDiasAConsumir);
+
       if (mensajeConvenio) {
-        mensajeConvenio.value = `REACTIVACIÓN FECHA DE FACTURACIÓN ${fechaFacturacionSelect} DE CADA MES:
+        mensajeConvenio.innerText = `REACTIVACIÓN FECHA DE FACTURACIÓN ${fechaFacturacionSelect} DE CADA MES:
 Estimado cliente: ${otClienteInput} ${nombreClienteInput} al momento sus saldos pendientes sin descuento:
-Pago pendiente de ${mesPendienteValue} : ${valorPlanValue} dolares
-Pago pendiente de la factura de éste período ${mesActualInput} : ${valorPlanValue} dolares
+Pago pendiente de ${mesPendienteValue} : ${valorPlanValue} 
+Pago pendiente de la factura de éste período ${mesActualInput} : ${valorPlanValue} 
 Dando UN TOTAL de $${valorTotalSinDescuentos} dolares
 
 PROMOCION DE CONTADO SOLO POR HOY ${mesActualInput} PARA REACTIVAR(proporcionales)
-Pago pendiente con descuento de ${mesPendienteValue} : 
-Pago pendiente de la factura de éste período ${mesActualInput} para reactivar: $10.00
-Dando UN TOTAL de $ 20.00 dólares.
+Pago pendiente con descuento de ${mesPendienteValue} : $${valorTotalPorDiasConsumidos}
+Pago pendiente de la factura de éste período ${mesActualInput} para reactivar: $${valorTotalPorDiasAConsumir}
+Dando UN TOTAL de $${valorTotalConDescuento}
 
 
 Si no cancela el día de hoy el valor con descuento, quedarán pendiente el saldo indicado sin descuento.
