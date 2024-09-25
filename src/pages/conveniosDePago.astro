@@ -3,10 +3,10 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Surnet | Convenios de pago">
-  <div class="lg:grid grid-cols-2">
+  <div class="lg:grid grid-cols-[2fr_3fr]">
     <form
       id="miFormulario"
-      class="lg:border lg:rounded-lg lg:gap-6 lg:m-5 grid grid-cols-1 lg:grid-cols-[1fr_2fr] lg:p-5"
+      class=" lg:gap-3 grid grid-cols-1 lg:grid-cols-[1fr_2fr] lg:pt-12"
     >
       <label
         for="fechaFacturacion"
@@ -55,7 +55,7 @@ import Layout from "../layouts/Layout.astro";
         name="valorPlan"
         class="py-1 w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
       >
-        <option value="" disabled selected>Selecciona un valor</option>
+        <option value="" disabled selected>Selecciona el plan</option>
         <option value="$20">$20</option>
         <option value="$24">$24</option>
         <option value="$25">$25</option>
@@ -69,7 +69,7 @@ import Layout from "../layouts/Layout.astro";
         >Mes pendiente</label
       >
       <input
-        type="date"
+        type="month"
         id="mesPendiente"
         name="mesPendiente"
         class="py-1 w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
@@ -78,7 +78,7 @@ import Layout from "../layouts/Layout.astro";
       <label
         for="diasConsumidos"
         class="mt-2 lg:text-end lg:flex lg:items-center"
-        >Total días consumidos</label
+        >Días consumidos</label
       >
       <input
         type="number"
@@ -92,7 +92,7 @@ import Layout from "../layouts/Layout.astro";
         >Mes actual</label
       >
       <input
-        type="date"
+        type="month"
         id="mesActual"
         name="mesActual"
         class="py-1 w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
@@ -124,7 +124,7 @@ Estimado cliente: <span class="text-cyan-600">---OT---</span> <span class="text-
 descuento son: <br>
 Pago pendiente de <span class="text-cyan-600">--fecha pago pendiente---</span>  : <span class="text-cyan-600"> --valor---pendiente---</span> <br> 
 Pago pendiente de la factura de éste período <span class="text-cyan-600">---fecha--factura--actual---</span>  : <span class="text-cyan-600">---valor actual sin descuento---</span> <br>
-Dando UN TOTAL de <span class="text-cyan-600">--- valores sin descuento ---</span> <br>
+Dando UN TOTAL de <span class="text-cyan-600">--- valores sin descuento ---</span> <br> <br> 
 PROMOCION DE CONTADO SOLO POR HOY <span class="text-cyan-600">---fecha---actual---</span> 
 PARA REACTIVAR(proporcionales) <br> 
 Pago pendiente con descuento <span class="text-cyan-600">--fecha---pago---pendiente-- </span> : <span class="text-cyan-600">---valor--pendiente--con--descuento---</span> <br>
