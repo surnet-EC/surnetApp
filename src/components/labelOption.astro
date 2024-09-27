@@ -1,0 +1,11 @@
+---
+interface Props {
+  title: string;
+  forTitle: string;
+}
+const { title, forTitle } = Astro.props;
+---
+
+<label for={`${forTitle}`} class="mt-2 lg:text-end lg:flex lg:items-center"
+  >{title}</label
+>

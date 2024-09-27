@@ -1,59 +1,51 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import LabelOption from "../components/labelOption.astro";
 ---
 
 <Layout title="Surnet | Convenios de pago">
-  <div class="lg:grid grid-cols-[2fr_3fr]">
-    <form
+  <div class="lg:grid grid-cols-[2fr_3fr] lg:gap-5">
+     
+     <form
       id="miFormulario"
-      class=" lg:gap-3 grid grid-cols-1 lg:grid-cols-[1fr_2fr] lg:pt-12"
+      class=" lg:gap-3 grid grid-cols-1 lg:grid-cols-[1fr_2fr] "
     >
-      <label
-        for="fechaFacturacion"
-        class="mt-2 lg:text-end lg:flex lg:items-center"
-        >Fecha de facturación</label
-      >
+    <h1 class="col-span-2 text-center text-lg">Opciones</h1>
+      <LabelOption title='Fecha de facturación' forTitle='fechaFacturacion' />
       <select
         id="fechaFacturacion"
         name="fechaFacturacion"
-        class="py-1 w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
+        class="w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
       >
         <option value="" disabled selected>Selecciona una fecha</option>
         <option value="1">Fecha 1</option>
         <option value="15">Fecha 15</option>
       </select>
+      <LabelOption title='OT cliente' forTitle='otCliente' />
 
-      <label for="otCliente" class="mt-2 lg:text-end lg:flex lg:items-center"
-        >OT cliente</label
-      >
       <input
         type="number"
         id="otCliente"
         name="otCliente"
-        class="py-1 w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
+        class=" w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
         placeholder="Número OT"
       />
 
-      <label
-        for="nombreCliente"
-        class="mt-2 lg:text-end lg:flex lg:items-center"
-        >Nombre del cliente</label
-      >
+      <LabelOption title='Nombre del cliente' forTitle='nombreCliente' />
+
       <input
         type="text"
         id="nombreCliente"
         name="nombreCliente"
-        class="py-1 w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
+        class="w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
         placeholder="Nombre completo"
       />
+      <LabelOption title='Valor del plan' forTitle='valorPlan' />
 
-      <label for="valorPlan" class="mt-2 lg:text-end lg:flex lg:items-center"
-        >Valor del plan</label
-      >
       <select
         id="valorPlan"
         name="valorPlan"
-        class="py-1 w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
+        class=" w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
       >
         <option value="" disabled selected>Selecciona el plan</option>
         <option value="$20">$20</option>
@@ -65,61 +57,55 @@ import Layout from "../layouts/Layout.astro";
         <option value="$35">$35</option>
       </select>
 
-      <label for="mesPendiente" class="mt-2 lg:text-end lg:flex lg:items-center"
-        >Mes pendiente</label
-      >
+      <LabelOption title='Mes pendiente' forTitle='mesPendiente' />
+
       <input
         type="month"
         id="mesPendiente"
         name="mesPendiente"
-        class="py-1 w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
+        class="w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
       />
 
-      <label
-        for="diasConsumidos"
-        class="mt-2 lg:text-end lg:flex lg:items-center"
-        >Días consumidos</label
-      >
+      
+      <LabelOption title='Días consumidos' forTitle='diasConsumidos' />
+
       <input
         type="number"
         id="diasConsumidos"
         name="diasConsumidos"
-        class="py-1 w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
+        class="w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
         placeholder="Días consumidos"
       />
 
-      <label for="mesActual" class="mt-2 lg:text-end lg:flex lg:items-center"
-        >Mes actual</label
-      >
+      <LabelOption title='Mes actual' forTitle='mesActual' />
+
       <input
-        type="month"
+        type="date"
         id="mesActual"
         name="mesActual"
-        class="py-1 w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
+        class="w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
       />
 
-      <label
-        for="diasPorConsumir"
-        class="mt-2 lg:text-end lg:flex lg:items-center"
-        >Días por consumir</label
-      >
+      <LabelOption title='Días por consumir' forTitle='diasPorConsumir' />
+
       <input
         type="number"
         id="diasPorConsumir"
         name="diasPorConsumir"
-        class="py-1 w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
+        class="w-full lg:w-auto border border-gray-500 rounded-lg pl-2"
         placeholder="Días restantes"
       />
 
       <button
         type="submit"
-        class="mt-5 bg-blue-500 text-white py-2 px-4 rounded">Evaluar</button
+        class="bg-blue-500 text-white py-2 px-4 rounded">Evaluar</button
       >
     </form>
+ 
+    <section class=" lg:rounded-lg  bg-gray-100 lg:pl-5">
+      <h1 class="col-span-2 text-center text-lg">Mensaje</h1>
 
-    <section class="lg:border lg:rounded-lg mt-5  lg:m-5">
-      <div class="mensajeConvenio w-full h-full lg:p-5">
-REACTIVACIÓN FECHA DE FACTURACIÓN <span class="text-cyan-600">---</span> DE CADA MES: <br>
+      <div class="mensajeConvenio w-full h-full mt-2">REACTIVACIÓN FECHA DE FACTURACIÓN <span class="text-cyan-600">---</span> DE CADA MES: <br>
 Estimado cliente: <span class="text-cyan-600">---OT---</span> <span class="text-cyan-600">---nombres---</span>  al momento sus saldos pendientes sin
 descuento son: <br>
 Pago pendiente de <span class="text-cyan-600">--fecha pago pendiente---</span>  : <span class="text-cyan-600"> --valor---pendiente---</span> <br> 
@@ -133,11 +119,7 @@ Pago pendiente con descuento <span class="text-cyan-600">--fecha---pago---pendie
  <br>
  Si no cancela el día de hoy el valor con descuento,
 quedarán pendiente el saldo indicado sin descuento.
-        
-
-
 </div>
-
     </section>
   </div>
 </Layout>
@@ -211,22 +193,20 @@ valorTotalPorDiasAConsumir = valorPorDia * diasAConsumir < 10
       console.log(valorPorDia, valorTotalPorDiasConsumidos,valorTotalPorDiasAConsumir);
 
       if (mensajeConvenio) {
-        mensajeConvenio.innerText = `REACTIVACIÓN FECHA DE FACTURACIÓN ${fechaFacturacionSelect} DE CADA MES:
-Estimado cliente: ${otClienteInput} ${nombreClienteInput} al momento sus saldos pendientes sin descuento:
-Pago pendiente de ${mesPendienteValue} : ${valorPlanValue} 
-Pago pendiente de la factura de éste período ${mesActualInput} : ${valorPlanValue} 
-Dando UN TOTAL de $${valorTotalSinDescuentos} dolares
+        mensajeConvenio.innerHTML = `REACTIVACIÓN FECHA DE FACTURACIÓN  ${fechaFacturacionSelect} DE CADA MES: </br>
+Estimado cliente:<span class='text-blue-500'> ${otClienteInput} ${nombreClienteInput}</span> al momento sus saldos pendientes sin descuento son:  </br>
+Pago pendiente de <span class='text-blue-500'> ${mesPendienteValue} </span> : <span class='text-blue-500'> ${valorPlanValue} </span> </br>
+Pago pendiente de la factura de éste período <span class='text-blue-500'> ${mesActualInput}</span> : <span class='text-blue-500'> ${valorPlanValue} </span> </br>
+Dando UN TOTAL de <span class='text-blue-500'> $${valorTotalSinDescuentos} dolares </span> </br>  </br>
 
-PROMOCION DE CONTADO SOLO POR HOY ${mesActualInput} PARA REACTIVAR(proporcionales)
-Pago pendiente con descuento de ${mesPendienteValue} : $${valorTotalPorDiasConsumidos}
-Pago pendiente de la factura de éste período ${mesActualInput} para reactivar: $${valorTotalPorDiasAConsumir}
-Dando UN TOTAL de $${valorTotalConDescuento}
+PROMOCION DE CONTADO SOLO POR HOY <span class='text-blue-500'> ${mesActualInput} </span> PARA REACTIVAR(proporcionales)  </br>
+Pago pendiente con descuento de <span class='text-blue-500'> ${mesPendienteValue} </span> :<span class='text-blue-500'> $${valorTotalPorDiasConsumidos} </span>  </br>
+Pago pendiente de la factura de éste período <span class='text-blue-500'> ${mesActualInput} </span> para reactivar: <span class='text-blue-500'> $${valorTotalPorDiasAConsumir} </span>  </br>
+Dando UN TOTAL de <span class='text-blue-500'> $${valorTotalConDescuento} </span>  </br>  </br>
 
 
 Si no cancela el día de hoy el valor con descuento, quedarán pendiente el saldo indicado sin descuento.
 `;
       }
-
-      console.log(mensajeConvenio);
     });
 </script>
