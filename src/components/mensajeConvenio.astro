@@ -1,0 +1,40 @@
+<h1 class="col-span-2 text-center text-lg ">Mensaje</h1>
+
+      <div id="mensaje" class="mensajeConvenio w-full h-full lg:p-2">REACTIVACIÓN FECHA DE FACTURACIÓN <span class="text-cyan-600">---</span> DE CADA MES: <br>
+Estimado cliente: <span class="text-cyan-600">---OT---</span> <span class="text-cyan-600">---nombres---</span>  al momento sus saldos pendientes sin
+descuento son: <br>
+Pago pendiente de <span class="text-cyan-600">--fecha pago pendiente---</span>  : <span class="text-cyan-600"> --valor---pendiente---</span> <br> 
+Pago pendiente de la factura de éste período <span class="text-cyan-600">---fecha--factura--actual---</span>  : <span class="text-cyan-600">---valor actual sin descuento---</span> <br>
+Dando UN TOTAL de <span class="text-cyan-600">--- valores sin descuento ---</span> <br> <br> 
+PROMOCION DE CONTADO SOLO POR HOY <span class="text-cyan-600">---fecha---actual---</span> 
+PARA REACTIVAR(proporcionales) <br> 
+Pago pendiente con descuento <span class="text-cyan-600">--fecha---pago---pendiente-- </span> : <span class="text-cyan-600">---valor--pendiente--con--descuento---</span> <br>
+ Pago pendiente de factura de éste periodo <span class="text-cyan-600">---fecha--factural--actual---</span>: <span class="text-cyan-600">--valor actual con descuento---</span> <br>
+ Dando UN TOTAL de <span class="text-cyan-600">---valores-con-decuentos---</span> <br>
+ <br>
+ Si no cancela el día de hoy el valor con descuento,
+quedarán pendiente el saldo indicado sin descuento.
+</div>
+
+<button id="copyButton" class="mt-4 p-2 bg-blue-500 text-white rounded">Copiar Texto</button>
+
+
+<script>
+     const copyButton = document.getElementById('copyButton');
+  const mensaje = document.getElementById('mensaje');
+
+  if (copyButton && mensaje) {
+    copyButton.addEventListener('click', async () => {
+      try {
+        // Copiar el contenido de 'mensaje' al portapapeles
+        await navigator.clipboard.writeText(mensaje.innerText);
+        alert('Texto copiado 😄');
+      } catch (err) {
+        console.error('Error al copiar el texto:', err);
+      }
+    });
+  } else {
+    console.error('No se encontró el botón o el mensaje');
+  }
+
+</script>

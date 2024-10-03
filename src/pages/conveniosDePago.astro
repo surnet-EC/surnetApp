@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import LabelOption from "../components/labelOption.astro";
+import MensajeConvenio from "../components/mensajeConvenio.astro";
 ---
 
 <Layout title="Surnet | Convenios de pago">
@@ -8,7 +9,7 @@ import LabelOption from "../components/labelOption.astro";
      
      <form
       id="miFormulario"
-      class=" lg:gap-3 grid grid-cols-1 lg:grid-cols-[1fr_2fr] "
+      class=" lg:gap-3 grid grid-cols-1 lg:grid-cols-[1fr_2fr] lg:m-2 "
     >
     <h1 class="col-span-2 text-center text-lg">Opciones</h1>
       <LabelOption title='Fecha de facturación' forTitle='fechaFacturacion' />
@@ -102,24 +103,8 @@ import LabelOption from "../components/labelOption.astro";
       >
     </form>
  
-    <section class=" lg:rounded-lg  bg-gray-100 lg:pl-5">
-      <h1 class="col-span-2 text-center text-lg">Mensaje</h1>
-
-      <div class="mensajeConvenio w-full h-full mt-2">REACTIVACIÓN FECHA DE FACTURACIÓN <span class="text-cyan-600">---</span> DE CADA MES: <br>
-Estimado cliente: <span class="text-cyan-600">---OT---</span> <span class="text-cyan-600">---nombres---</span>  al momento sus saldos pendientes sin
-descuento son: <br>
-Pago pendiente de <span class="text-cyan-600">--fecha pago pendiente---</span>  : <span class="text-cyan-600"> --valor---pendiente---</span> <br> 
-Pago pendiente de la factura de éste período <span class="text-cyan-600">---fecha--factura--actual---</span>  : <span class="text-cyan-600">---valor actual sin descuento---</span> <br>
-Dando UN TOTAL de <span class="text-cyan-600">--- valores sin descuento ---</span> <br> <br> 
-PROMOCION DE CONTADO SOLO POR HOY <span class="text-cyan-600">---fecha---actual---</span> 
-PARA REACTIVAR(proporcionales) <br> 
-Pago pendiente con descuento <span class="text-cyan-600">--fecha---pago---pendiente-- </span> : <span class="text-cyan-600">---valor--pendiente--con--descuento---</span> <br>
- Pago pendiente de factura de éste periodo <span class="text-cyan-600">---fecha--factural--actual---</span>: <span class="text-cyan-600">--valor actual con descuento---</span> <br>
- Dando UN TOTAL de <span class="text-cyan-600">---valores-con-decuentos---</span> <br>
- <br>
- Si no cancela el día de hoy el valor con descuento,
-quedarán pendiente el saldo indicado sin descuento.
-</div>
+    <section class=" lg:rounded-lg  bg-gray-100 lg:m-2">
+      <MensajeConvenio/>
     </section>
   </div>
 </Layout>
@@ -190,7 +175,6 @@ valorTotalPorDiasAConsumir = valorPorDia * diasAConsumir < 10
         console.log("El valor del plan no está definido.");
       }
 
-      console.log(valorPorDia, valorTotalPorDiasConsumidos,valorTotalPorDiasAConsumir);
 
       if (mensajeConvenio) {
         mensajeConvenio.innerHTML = `REACTIVACIÓN FECHA DE FACTURACIÓN  ${fechaFacturacionSelect} DE CADA MES: </br>
@@ -209,4 +193,7 @@ Si no cancela el día de hoy el valor con descuento, quedarán pendiente el sald
 `;
       }
     });
+
+   
+
 </script>
